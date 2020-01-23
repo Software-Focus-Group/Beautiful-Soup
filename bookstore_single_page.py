@@ -43,10 +43,11 @@ for item in items:
 	temp["price"] = item.article.find("div",class_="product_price").find("p",class_="price_color").text[1:]
 
 	# stock is inside the <div class="product_price"> within <p> class "instock availability"
+	# as we have more than one <div> we use find("div",class_="product_price")
 	# we use the .text method to extract the text as a string and use strip() to remove white spaces
 	temp["stock"] = item.article.find("div",class_="product_price").find("p",class_="instock availability").text.strip()	
 
-	# star rating a word insde the <article> within a <p> with class "star-rating"
+	# star rating is a word inside the <article> within a <p> with class "star-rating"
 	# we use the word2number module to make words [One,Two,Three...] --> [1,2,3..]
 	temp["rating"] = w2n.word_to_num(item.article.p.attrs["class"][1])
 
